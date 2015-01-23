@@ -1,7 +1,7 @@
 var Phaser = Phaser || {};
 
 var game = new Phaser.Game();
-game.state.add('loading',{preload:preload,create:create},true);
+game.state.add('loading',{preload:preload},true);
 
 function preload() {
     console.log('preload');
@@ -11,6 +11,10 @@ function preload() {
         create: create,
         update: update
     });
+    game.load.onLoadComplete.add(function(){
+        game.state.start('main');
+    });
+    console.log("finished preload");
 }
 
 function create() {
