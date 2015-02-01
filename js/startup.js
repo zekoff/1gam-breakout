@@ -10,4 +10,11 @@ requirejs.config({
         phaser: ['https://cdnjs.cloudflare.com/ajax/libs/phaser/2.2.2/phaser.min']
     }
 });
-require(['breakout']);
+requirejs(['game', 'state/title'],
+    function(Game, TitleScreen) {
+        Game.state.add('title', TitleScreen, true);
+    },
+    function() {
+        document.write("JS error");
+    }
+);
