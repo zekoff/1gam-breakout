@@ -10,9 +10,12 @@ requirejs.config({
         phaser: ['https://cdnjs.cloudflare.com/ajax/libs/phaser/2.2.2/phaser.min']
     }
 });
-requirejs(['game', 'state/title'],
-    function(Game, TitleScreen) {
-        Game.state.add('title', TitleScreen, true);
+requirejs(['phaser', 'state/title', 'state/main'],
+    function(Phaser, TitleScreen, MainState) {
+        var game = new Phaser.Game();
+        game.state.add('title', TitleScreen);
+        game.state.add('main', MainState);
+        game.state.start('title');
     },
     function() {
         document.write("JS error");
