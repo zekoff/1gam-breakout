@@ -14,7 +14,7 @@
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":30,"h":30},
-	"sourceSize": {"w":30,"h":30}
+	"sourceSize": {"w":32,"h":32}
 },
 {
 	"filename": "green",
@@ -22,7 +22,7 @@
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":30,"h":30},
-	"sourceSize": {"w":30,"h":30}
+	"sourceSize": {"w":32,"h":32}
 },
 {
 	"filename": "paddle",
@@ -38,7 +38,7 @@
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":34,"h":32},
-	"sourceSize": {"w":34,"h":32}
+	"sourceSize": {"w":32,"h":32}
 },
 {
 	"filename": "red",
@@ -46,7 +46,7 @@
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":34,"h":32},
-	"sourceSize": {"w":34,"h":32}
+	"sourceSize": {"w":32,"h":32}
 },
 {
 	"filename": "stone",

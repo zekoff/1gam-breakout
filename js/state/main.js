@@ -15,9 +15,20 @@ define(['phaser', 'objects/ball', 'objects/paddle', 'objects/brick', 'config'],
             });
 
             // Experimental level creation
-            bricks.add(new Brick(state, 'blue', 300, 300));
-            bricks.add(new Brick(state, 'red', 350, 300));
-            bricks.add(new Brick(state, 'yellow', 400, 300));
+            var level = new Phaser.BitmapData(state.game, 'level', 15, 15);
+            level.load('1');
+            for (var i = 0; i < 15; i++) {
+                for (var j = 0; j < 15; j++) {
+                    var pixel = level.getPixel(i, j);
+                    var key = null;
+                    if (pixel.r && !pixel.g && !pixel.b) key = 'red';
+                    else if (!pixel.r && !pixel.g && pixel.b) key = 'blue';
+                    else if (pixel.r && pixel.g && !pixel.b) key = 'yellow';
+                    else if (!pixel.r && pixel.g && !pixel.b) key = 'green';
+                    if (key)
+                        bricks.add(new Brick(state, key, i * 64 + 52, j * 32 + 26));
+                }
+            }
         };
         state.update = function() {
             state.physics.arcade.collide(balls, paddle);
