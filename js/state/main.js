@@ -14,7 +14,7 @@ define(['phaser', 'objects/ball', 'objects/paddle', 'objects/brick', 'config', '
                 ball.body.velocity.set(-100, 500);
             });
             // Experimental level creation
-            createLevel(state, bricks, 'test-level-2');
+            createLevel(state, bricks, 'test_level');
         };
         state.update = function() {
             state.physics.arcade.collide(balls, paddle);
