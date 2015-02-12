@@ -54,7 +54,7 @@
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":33,"h":31},
-	"sourceSize": {"w":33,"h":31}
+	"sourceSize": {"w":32,"h":32}
 },
 {
 	"filename": "stone_chipped",
@@ -62,7 +62,7 @@
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":31},
-	"sourceSize": {"w":32,"h":31}
+	"sourceSize": {"w":32,"h":32}
 },
 {
 	"filename": "stone_cracked",

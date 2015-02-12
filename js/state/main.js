@@ -1,5 +1,5 @@
-define(['phaser', 'objects/ball', 'objects/paddle', 'objects/brick', 'config'],
-    function(Phaser, Ball, Paddle, Brick, Config) {
+define(['phaser', 'objects/ball', 'objects/paddle', 'objects/brick', 'config', 'level'],
+    function(Phaser, Ball, Paddle, Brick, Config, createLevel) {
         var state = new Phaser.State();
         var paddle;
         var balls;
@@ -13,22 +13,8 @@ define(['phaser', 'objects/ball', 'objects/paddle', 'objects/brick', 'config'],
             balls.forEach(function(ball) {
                 ball.body.velocity.set(-100, 500);
             });
-
             // Experimental level creation
-            var level = new Phaser.BitmapData(state.game, 'level', 15, 15);
-            level.load('1');
-            for (var i = 0; i < 15; i++) {
-                for (var j = 0; j < 15; j++) {
-                    var pixel = level.getPixel(i, j);
-                    var key = null;
-                    if (pixel.r && !pixel.g && !pixel.b) key = 'red';
-                    else if (!pixel.r && !pixel.g && pixel.b) key = 'blue';
-                    else if (pixel.r && pixel.g && !pixel.b) key = 'yellow';
-                    else if (!pixel.r && pixel.g && !pixel.b) key = 'green';
-                    if (key)
-                        bricks.add(new Brick(state, key, i * 64 + 52, j * 32 + 26));
-                }
-            }
+            createLevel(state, bricks, 'test-level-2');
         };
         state.update = function() {
             state.physics.arcade.collide(balls, paddle);
