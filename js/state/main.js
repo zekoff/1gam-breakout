@@ -18,7 +18,14 @@ define(['phaser', 'objects/ball', 'objects/paddle', 'objects/brick', 'config', '
             createLevel(state, bricks, 'test_level_2');
         };
         state.update = function() {
-            state.physics.arcade.collide(balls, paddle);
+            state.physics.arcade.overlap(paddle, balls, function(paddle, ball) {
+                var leftPaddleBound = paddle.body.center.x - paddle.width / 2;
+                var hitLocation = ball.body.center.x - leftPaddleBound;
+                var normalizedLocation = hitLocation / paddle.width;
+                var reflectAngle = 120 * normalizedLocation;
+                var absoluteAngle = 210 + reflectAngle;
+                state.physics.arcade.velocityFromAngle(absoluteAngle, Config.ballSpeed, ball.body.velocity);
+            });
             state.physics.arcade.collide(bricks, balls, function(brick) {
                 brick.damage(1);
                 if (brick.health === 2)
