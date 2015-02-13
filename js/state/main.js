@@ -1,5 +1,6 @@
 define(['phaser', 'objects/ball', 'objects/paddle', 'objects/brick', 'config', 'level'],
     function(Phaser, Ball, Paddle, Brick, Config, createLevel) {
+        var DEBUG = true;
         var state = new Phaser.State();
         var paddle;
         var balls;
@@ -14,19 +15,22 @@ define(['phaser', 'objects/ball', 'objects/paddle', 'objects/brick', 'config', '
                 ball.body.velocity.set(-100, 500);
             });
             // Experimental level creation
-            createLevel(state, bricks, 'test_level');
+            createLevel(state, bricks, 'test_level_2');
         };
         state.update = function() {
             state.physics.arcade.collide(balls, paddle);
-            var cleanup = [];
             state.physics.arcade.collide(bricks, balls, function(brick) {
-                cleanup.push(brick);
-                // Calling destroy() during iteration causes an exception.
-                // Probably the JS/Phaser equivalent of ConcurrentModificationException
-            });
-            cleanup.forEach(function(brick) {
-                brick.destroy();
+                brick.damage(1);
+                if (brick.health === 2)
+                    brick.setFrame(state.cache.getFrameData('atlas').getFrameByName('stone_chipped'));
+                else if (brick.health === 1)
+                    brick.setFrame(state.cache.getFrameData('atlas').getFrameByName('stone_cracked'));
             });
         };
+        if (DEBUG)
+            state.render = function() {
+                state.time.advancedTiming = true;
+                state.game.debug.text("FPS: " + state.time.fps, 20, 25, '#FFFFFF');
+            };
         return state;
     });

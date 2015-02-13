@@ -6,6 +6,7 @@ define(['phaser', 'config'], function(Phaser, Config) {
         brick.scale.set(2, 1);
         state.physics.enable(brick, Phaser.Physics.ARCADE);
         brick.body.immovable = true;
+        brick.health = type === 'stone' ? 3 : 1;
         return brick;
     };
 });
