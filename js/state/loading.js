@@ -5,15 +5,17 @@ define(['phaser'], function(Phaser) {
     };
     state.create = function() {
         // bind preload sprite and queue other assets for loading
-        state.load.spritesheet('coin', 'images/coin_sheet.png', 24, 24);
-        state.load.atlas('atlas', 'images/main_atlas.png', 'images/main_atlas.json');
-        state.load.image('test_level', 'images/levels/test_level.bmp');
-        state.load.image('test_level_2', 'images/levels/test_level_2.bmp');
-        state.load.image('paddle_size_up', 'images/paddle_size_up.png');
-        state.load.image('paddle_size_down', 'images/paddle_size_down.png');
-        state.load.audio('coin','sounds/coin.ogg');
-        state.load.audio('powerup','sounds/powerup.ogg');
-        state.load.audio('powerdown','sounds/powerdown.ogg');
+        state.load.spritesheet('coin', 'assets/images/coin_sheet.png', 24, 24);
+        state.load.atlas('atlas', 'assets/images/main_atlas.png', 'assets/images/main_atlas.json');
+        state.load.image('test_level', 'assets/images/levels/test_level.bmp');
+        state.load.image('test_level_2', 'assets/images/levels/test_level_2.bmp');
+        state.load.image('paddle_size_up', 'assets/images/paddle_size_up.png');
+        state.load.image('paddle_size_down', 'assets/images/paddle_size_down.png');
+        state.load.audio('coin', 'assets/sounds/coin.ogg');
+        state.load.audio('powerup', 'assets/sounds/powerup.ogg');
+        state.load.audio('powerdown', 'assets/sounds/powerdown.ogg');
+        state.load.audio('brick_hit', 'assets/sounds/brick_hit.ogg');
+        state.load.audio('paddle_bounce', 'assets/sounds/paddle_bounce.ogg');
         state.load.start();
     };
     state.update = function() {

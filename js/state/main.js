@@ -28,6 +28,7 @@ define(['phaser', 'objects/ball', 'objects/paddle',
             state.physics.arcade.overlap(paddle, balls, function(paddle, ball) {
                 state.physics.arcade.velocityFromAngle(computeReflectAngle(paddle, ball),
                     Config.ballSpeed, ball.body.velocity);
+                    state.add.audio('paddle_bounce').play();
             });
             state.physics.arcade.collide(bricks, balls, function(brick) {
                 brickBallCollision(state, brick);

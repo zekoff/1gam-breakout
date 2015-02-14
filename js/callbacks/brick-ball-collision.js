@@ -2,6 +2,7 @@ define(['phaser', 'config'], function(Phaser, Config) {
     return function(state, brick) {
         brick.damage(1);
         state.score += Config.scoreBrickDestroy;
+        state.add.audio('brick_hit').play();
         switch (brick.health) {
             case 2:
                 brick.setFrame(state.cache.getFrameData('atlas').getFrameByName('stone_chipped'));
