@@ -13,6 +13,7 @@ define(['phaser', 'objects/ball', 'objects/paddle',
         var balls;
         var bricks;
         var pickups;
+        state.score = 0;
         state.create = function() {
             balls = state.add.group();
             bricks = state.add.group();
@@ -43,6 +44,7 @@ define(['phaser', 'objects/ball', 'objects/paddle',
             state.render = function() {
                 state.time.advancedTiming = true;
                 state.game.debug.text("FPS: " + state.time.fps, 20, 25, '#FFFFFF');
+                console.log(state.score);
             };
         return state;
     });

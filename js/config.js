@@ -6,6 +6,8 @@ define(function() {
         ballSpeed: 500,
         pickupProbability: 0.95,
         buffDurationMs: 10000,
-        debuffDurationMs: 10000
+        debuffDurationMs: 10000,
+        scoreBrickDestroy: 500,
+        scoreCoinPickup: 1000
     };
 });
