@@ -1,5 +1,12 @@
-define(['phaser', 'objects/ball', 'objects/paddle', 'objects/brick','objects/pickup', 'callbacks/compute-reflect-angle','callbacks/brick-ball-collision', 'config', 'level'],
-    function(Phaser, Ball, Paddle, Brick, Pickup, computeReflectAngle, brickBallCollision, Config, createLevel) {
+define(['phaser', 'objects/ball', 'objects/paddle',
+        'objects/brick', 'objects/pickup', 'callbacks/compute-reflect-angle',
+        'callbacks/brick-ball-collision', 'callbacks/paddle-pickup-collision', 'config',
+        'level'
+    ],
+    function(Phaser, Ball, Paddle,
+        Brick, Pickup, computeReflectAngle,
+        brickBallCollision, paddlePickupCollision, Config,
+        createLevel) {
         var DEBUG = true;
         var state = new Phaser.State();
         var paddle;
@@ -18,16 +25,18 @@ define(['phaser', 'objects/ball', 'objects/paddle', 'objects/brick','objects/pic
         };
         state.update = function() {
             state.physics.arcade.overlap(paddle, balls, function(paddle, ball) {
-                state.physics.arcade.velocityFromAngle(computeReflectAngle(paddle, ball), Config.ballSpeed, ball.body.velocity);
+                state.physics.arcade.velocityFromAngle(computeReflectAngle(paddle, ball),
+                    Config.ballSpeed, ball.body.velocity);
             });
             state.physics.arcade.collide(bricks, balls, function(brick) {
-                brickBallCollision(state,brick);
-                // Chance to spawn pickup
-                if (state.rnd.frac() > Config.pickupProbability) return;
-                pickups.add(new Pickup(state, brick.body.center.x, brick.body.center.y));
+                brickBallCollision(state, brick);
+                if (brick.health === 0 &&
+                    state.rnd.frac() <= Config.pickupProbability)
+                    pickups.add(new Pickup(state, brick.body.center.x, brick.body.center.y));
             });
-            state.physics.arcade.overlap(paddle, pickups, function(paddle, pickup){
-                
+            state.physics.arcade.overlap(paddle, pickups, function(paddle, pickup) {
+                paddlePickupCollision(state, paddle, pickup);
+                pickup.kill();
             });
         };
         if (DEBUG)

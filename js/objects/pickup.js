@@ -9,7 +9,6 @@ define(['phaser'], function(Phaser) {
         pickup.outOfBoundsKill = true;
         pickup.body.acceleration.set(0, 150);
         pickup.body.velocity.set(0, 50);
-        var spinRate = state.rnd.between(17, 30);
         switch (type) {
             case 'paddle_size_up':
                 pickup.tint = 0x00FF00;
@@ -19,6 +18,7 @@ define(['phaser'], function(Phaser) {
                 break;
             case 'coin':
                 pickup.animations.add('spin');
+                var spinRate = state.rnd.between(17, 30);
                 pickup.animations.play('spin', spinRate, true);
                 var rotateRate = 0;
                 while (Math.abs(rotateRate) < 90)

@@ -4,6 +4,8 @@ define(function() {
         gameHeight: 600,
         paddleY: 0.95,
         ballSpeed: 500,
-        pickupProbability: 0.95
+        pickupProbability: 0.95,
+        buffDurationMs: 10000,
+        debuffDurationMs: 10000
     };
 });
