@@ -23,12 +23,19 @@ define(['phaser', 'objects/ball', 'objects/paddle',
             balls.add(new Ball(state));
             // Experimental level creation
             createLevel(state, bricks, 'test_level');
+            var scoreText = state.add.text(Config.gameWidth / 2, 25, "Score: " + state.score, {
+                fill: '#FFFFFF'
+            });
+            scoreText.anchor.set(0.5);
+            scoreText.update = function() {
+                this.text = "Score: " + state.score;
+            };
         };
         state.update = function() {
             state.physics.arcade.overlap(paddle, balls, function(paddle, ball) {
                 state.physics.arcade.velocityFromAngle(computeReflectAngle(paddle, ball),
                     Config.ballSpeed, ball.body.velocity);
-                    state.add.audio('paddle_bounce').play();
+                state.add.audio('paddle_bounce').play();
             });
             state.physics.arcade.collide(bricks, balls, function(brick) {
                 brickBallCollision(state, brick);
@@ -45,7 +52,6 @@ define(['phaser', 'objects/ball', 'objects/paddle',
             state.render = function() {
                 state.time.advancedTiming = true;
                 state.game.debug.text("FPS: " + state.time.fps, 20, 25, '#FFFFFF');
-                console.log(state.score);
             };
         return state;
     });

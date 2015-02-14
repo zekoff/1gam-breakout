@@ -11,6 +11,7 @@ define(['config'], function(Config) {
                     paddle.scale.set(1);
                 });
                 paddleStateTimer.start();
+                state.score += Config.scorePaddleSizeIncrease;
                 state.add.audio('powerup').play();
                 break;
             case 'paddle_size_down':
@@ -21,6 +22,7 @@ define(['config'], function(Config) {
                     paddle.scale.set(1);
                 });
                 paddleStateTimer.start();
+                state.score += Config.scorePaddleSizeDecrease;
                 state.add.audio('powerdown').play();
                 break;
             case 'coin':
