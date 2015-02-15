@@ -7,7 +7,8 @@ requirejs.config({
         }
     },
     paths: {
-        phaser: ['https://cdnjs.cloudflare.com/ajax/libs/phaser/2.2.2/phaser.min']
+        phaser: 'https://cdnjs.cloudflare.com/ajax/libs/phaser/2.2.2/phaser.min',
+        jquery: 'https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min'
     }
 });
 requirejs(['phaser', 'state/title', 'state/main', 'state/loading', 'config'],

@@ -33,14 +33,14 @@ define(['config', 'player-data', 'objects/ball', 'phaser'], function(Config, pla
                 break;
             case 'multiball':
                 balls.add(new Ball(state, paddle.body.center.x, paddle.body.center.y - 40));
-                if (state.fireballActive) balls.forEachAlive(function(ball) {
+                if (playerData.fireballActive) balls.forEachAlive(function(ball) {
                     ball.tint = 0xFFA500;
                 });
                 state.add.audio('powerup').play();
                 break;
             case 'fireball':
-                if (state.fireballActive) return;
-                state.fireballActive = true;
+                if (playerData.fireballActive) return;
+                playerData.fireballActive = true;
                 var emitters = state.add.group();
                 balls.forEachAlive(function(ball) {
                     ball.tint = 0xFFA500;
@@ -60,7 +60,7 @@ define(['config', 'player-data', 'objects/ball', 'phaser'], function(Config, pla
                 fireballTimer.destroy();
                 fireballTimer = state.time.create();
                 fireballTimer.add(Config.fireballDurationMs, function() {
-                    state.fireballActive = false;
+                    playerData.fireballActive = false;
                     balls.forEachAlive(function(ball) {
                         ball.tint = 0xFFFFFF;
                         emitters.destroy();

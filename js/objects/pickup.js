@@ -1,5 +1,5 @@
 define(['phaser'], function(Phaser) {
-    var types = ['coin', 'paddle_size_up', 'paddle_size_down', 'multiball', 'fireball'];
+    var types = ['paddle_size_up', 'paddle_size_down', 'multiball', 'fireball'];
     return function(state, x, y, type) {
         if (typeof type === 'undefined') type = state.rnd.pick(types);
         var pickup = state.add.sprite(x, y, type);
@@ -8,8 +8,8 @@ define(['phaser'], function(Phaser) {
         state.physics.enable(pickup, Phaser.Physics.ARCADE);
         pickup.checkWorldBounds = true;
         pickup.outOfBoundsKill = true;
-        pickup.body.acceleration.set(0, 150);
-        pickup.body.velocity.set(0, 50);
+        pickup.body.acceleration.set(0, 70);
+        pickup.body.velocity.set(0, 20);
         switch (type) {
             case 'paddle_size_up':
                 pickup.tint = 0x00FF00;
