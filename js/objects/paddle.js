@@ -5,7 +5,6 @@ define(['phaser', 'config'], function(Phaser, Config) {
         paddle.anchor.set(0.5);
         state.physics.enable(paddle, Phaser.Physics.ARCADE);
         paddle.body.immovable = true;
-        paddle.body.collideWorldBounds = true;
         if (inputEnabled) {
             paddle.inputEnabled = true;
             paddle.input.enableDrag();

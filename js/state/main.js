@@ -14,6 +14,7 @@ define(['phaser', 'objects/ball', 'objects/paddle',
             var balls;
             var bricks;
             var pickups;
+            state.fireballActive = false;
             state.create = function() {
                 balls = state.add.group();
                 bricks = state.add.group();
@@ -36,14 +37,15 @@ define(['phaser', 'objects/ball', 'objects/paddle',
                         Config.ballSpeed, ball.body.velocity);
                     state.add.audio('paddle_bounce').play();
                 });
-                state.physics.arcade.collide(bricks, balls, function(brick) {
+                var collisionFunction = state.fireballActive ? state.physics.arcade.overlap : state.physics.arcade.collide;
+                collisionFunction.call(state.physics.arcade, bricks, balls, function(brick) {
                     brickBallCollision(state, brick);
                     if (brick.health === 0 &&
                         state.rnd.frac() <= Config.pickupProbability)
                         pickups.add(new Pickup(state, brick.body.center.x, brick.body.center.y));
                 });
                 state.physics.arcade.overlap(paddle, pickups, function(paddle, pickup) {
-                    paddlePickupCollision(state, paddle, pickup);
+                    paddlePickupCollision(state, paddle, pickup, balls);
                     pickup.kill();
                 });
                 if (bricks.total === 0 && pickups.total === 0) {

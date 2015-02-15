@@ -10,6 +10,7 @@ define(function() {
         scoreBrickDestroy: 500,
         scoreCoinPickup: 1000,
         scorePaddleSizeIncrease: 0,
-        scorePaddleSizeDecrease: 1500
+        scorePaddleSizeDecrease: 1500,
+        fireballDurationMs: 4000
     };
 });

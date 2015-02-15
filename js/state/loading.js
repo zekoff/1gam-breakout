@@ -11,6 +11,8 @@ define(['phaser'], function(Phaser) {
         state.load.image('test_level_2', 'assets/images/levels/test_level_2.bmp');
         state.load.image('paddle_size_up', 'assets/images/paddle_size_up.png');
         state.load.image('paddle_size_down', 'assets/images/paddle_size_down.png');
+        state.load.image('fireball', 'assets/images/fireball.png');
+        state.load.image('multiball', 'assets/images/multiball.png');
         state.load.audio('coin', 'assets/sounds/coin.ogg');
         state.load.audio('powerup', 'assets/sounds/powerup.ogg');
         state.load.audio('powerdown', 'assets/sounds/powerdown.ogg');

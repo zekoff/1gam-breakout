@@ -1,5 +1,5 @@
 define(['phaser'], function(Phaser) {
-    var types = ['coin', 'paddle_size_up', 'paddle_size_down'];
+    var types = ['coin', 'paddle_size_up', 'paddle_size_down', 'multiball', 'fireball'];
     return function(state, x, y, type) {
         if (typeof type === 'undefined') type = state.rnd.pick(types);
         var pickup = state.add.sprite(x, y, type);
@@ -21,6 +21,8 @@ define(['phaser'], function(Phaser) {
                 pickup.animations.add('spin');
                 var spinRate = state.rnd.between(17, 30);
                 pickup.animations.play('spin', spinRate, true);
+            case 'multiball':
+            case 'fireball':
                 var rotateRate = 0;
                 while (Math.abs(rotateRate) < 90)
                     rotateRate = state.rnd.between(-270, 270);
