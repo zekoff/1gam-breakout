@@ -15,7 +15,7 @@ requirejs(['phaser', 'state/title', 'state/main', 'state/loading', 'config'],
         var game = new Phaser.Game(Config.gameWidth, Config.gameHeight);
         game.state.add('loading', Preloader);
         game.state.add('title', TitleScreen);
-        game.state.add('main', MainState);
+        game.state.add('main', new MainState('1'));
         game.state.start('loading');
     },
     function() {

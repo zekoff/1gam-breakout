@@ -1,4 +1,4 @@
-define(['config'], function(Config) {
+define(['config', 'player-data'], function(Config, playerData) {
     var paddleStateTimer = null;
     return function(state, paddle, pickup) {
         if (!paddleStateTimer) paddleStateTimer = state.time.create();
@@ -11,7 +11,7 @@ define(['config'], function(Config) {
                     paddle.scale.set(1);
                 });
                 paddleStateTimer.start();
-                state.score += Config.scorePaddleSizeIncrease;
+                playerData.score += Config.scorePaddleSizeIncrease;
                 state.add.audio('powerup').play();
                 break;
             case 'paddle_size_down':
@@ -22,11 +22,11 @@ define(['config'], function(Config) {
                     paddle.scale.set(1);
                 });
                 paddleStateTimer.start();
-                state.score += Config.scorePaddleSizeDecrease;
+                playerData.score += Config.scorePaddleSizeDecrease;
                 state.add.audio('powerdown').play();
                 break;
             case 'coin':
-                state.score += Config.scoreCoinPickup;
+                playerData.score += Config.scoreCoinPickup;
                 state.add.audio('coin').play();
                 break;
         }

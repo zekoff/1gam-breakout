@@ -6,6 +6,7 @@ define(['phaser'], function(Phaser) {
         pickup.type = type;
         pickup.anchor.set(0.5);
         state.physics.enable(pickup, Phaser.Physics.ARCADE);
+        pickup.checkWorldBounds = true;
         pickup.outOfBoundsKill = true;
         pickup.body.acceleration.set(0, 150);
         pickup.body.velocity.set(0, 50);

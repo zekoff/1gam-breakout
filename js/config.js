@@ -9,7 +9,7 @@ define(function() {
         debuffDurationMs: 10000,
         scoreBrickDestroy: 500,
         scoreCoinPickup: 1000,
-        scorePaddleSizeIncrease: -500,
+        scorePaddleSizeIncrease: 0,
         scorePaddleSizeDecrease: 1500
     };
 });

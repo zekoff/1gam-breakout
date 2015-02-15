@@ -1,7 +1,7 @@
-define(['phaser', 'config'], function(Phaser, Config) {
+define(['phaser', 'config', 'player-data'], function(Phaser, Config, playerData) {
     return function(state, brick) {
         brick.damage(1);
-        state.score += Config.scoreBrickDestroy;
+        playerData.score += Config.scoreBrickDestroy;
         state.add.audio('brick_hit').play();
         switch (brick.health) {
             case 2:
