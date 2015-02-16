@@ -1,12 +1,12 @@
 define(['phaser', 'objects/ball', 'objects/paddle',
         'objects/brick', 'objects/pickup', 'callbacks/compute-reflect-angle',
         'callbacks/brick-ball-collision', 'callbacks/paddle-pickup-collision', 'config',
-        'level', 'player-data'
+        'level', 'player-data', 'callbacks/show-message'
     ],
     function(Phaser, Ball, Paddle,
         Brick, Pickup, computeReflectAngle,
         brickBallCollision, paddlePickupCollision, Config,
-        createLevel, playerData) {
+        createLevel, playerData, showMessage) {
         return function makeMain(level) {
             var DEBUG = true;
             var state = new Phaser.State();
@@ -100,6 +100,7 @@ define(['phaser', 'objects/ball', 'objects/paddle',
                 playerData.fireballActive = false;
                 var ball = new Ball(state, paddle);
                 balls.add(ball);
+                showMessage(state, "(Click/touch to launch)");
                 state.input.onDown.addOnce(function() {
                     ball.startMovement();
                     ballInPlay = true;
