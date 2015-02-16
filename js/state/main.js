@@ -48,6 +48,11 @@ define(['phaser', 'objects/ball', 'objects/paddle',
                     if (!brick.health) {
                         if (state.rnd.frac() <= Config.pickupProbability)
                             pickups.add(new Pickup(state, brick.body.center.x, brick.body.center.y));
+                        var coinChance = state.rnd.frac();
+                        while (coinChance < Config.coinChance) {
+                            pickups.add(new Pickup(state, brick.body.center.x, brick.body.center.y, 'coin'));
+                            coinChance = state.rnd.frac();
+                        }
                     }
                 });
                 state.physics.arcade.overlap(paddle, pickups, function(paddle, pickup) {

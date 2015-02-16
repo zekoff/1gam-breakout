@@ -23,17 +23,12 @@ define(['phaser', 'jquery'], function(Phaser, $) {
         for (var i = 1; i <= 7; i++)
             state.load.image(i, 'assets/images/levels/' + i + '.png');
         state.load.start();
-        // get backgrounds from flickr
         var endpoint = 'https://api.flickr.com/services/rest/';
         endpoint += '?method=flickr.galleries.getPhotos';
         endpoint += '&api_key=3283425b51c87f8f31485ce36b6e9b5c';
         endpoint += '&gallery_id=66911286-72157648726328108';
         endpoint += '&format=json&nojsoncallback=1';
-        var request = {
-            url: endpoint,
-            crossOrigin: true
-        };
-        $.ajax(request).done(function(data) {
+        $.get(endpoint).done(function(data) {
             for (var j = 0; j < data.photos.photo.length; j++) {
                 var photo = data.photos.photo[j];
                 var location = "https://farm";
@@ -44,7 +39,6 @@ define(['phaser', 'jquery'], function(Phaser, $) {
         }).always(function() {
             finishedFlickrLoading = true;
         });
-
     };
     state.update = function() {
         if (state.load.hasLoaded && finishedFlickrLoading)
