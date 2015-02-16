@@ -14,6 +14,7 @@ define(['phaser', 'objects/ball', 'objects/paddle',
             var balls;
             var bricks;
             var pickups;
+            var ballInPlay = false;
             state.create = function() {
                 state.game.stage.backgroundColor = 0xDDDDFF;
                 var backgroundKey = 'background' + level.toString();
@@ -38,11 +39,12 @@ define(['phaser', 'objects/ball', 'objects/paddle',
                 };
             };
             state.update = function() {
-                state.physics.arcade.overlap(paddle, balls, function(paddle, ball) {
-                    state.physics.arcade.velocityFromAngle(computeReflectAngle(paddle, ball),
-                        Config.ballSpeed, ball.body.velocity);
-                    state.add.audio('paddle_bounce').play();
-                });
+                if (ballInPlay)
+                    state.physics.arcade.overlap(paddle, balls, function(paddle, ball) {
+                        state.physics.arcade.velocityFromAngle(computeReflectAngle(paddle, ball),
+                            Config.ballSpeed, ball.body.velocity);
+                        state.add.audio('paddle_bounce').play();
+                    });
                 var collisionFunction = playerData.fireballActive ? state.physics.arcade.overlap : state.physics.arcade.collide;
                 collisionFunction.call(state.physics.arcade, bricks, balls, function(brick) {
                     brickBallCollision(state, brick);
@@ -63,11 +65,13 @@ define(['phaser', 'objects/ball', 'objects/paddle',
                 if (!bricks.total && !pickups.total) {
                     levelTransition();
                 }
-                if (!balls.total) {
+                if (!balls.total && ballInPlay) {
+                    ballInPlay = false;
                     if (!--playerData.lives) {
                         console.log('you lost'); // game over
                     }
                     else {
+                        console.log('resetting ball');
                         // play sad noise
                         state.add.audio('powerdown').play();
                         // reset ball to paddle
@@ -90,9 +94,13 @@ define(['phaser', 'objects/ball', 'objects/paddle',
                 state.game.state.start('main');
             };
             var readyBall = function() {
-                var ball = new Ball(state, paddle.body.center.x, paddle.body.center.y - 50);
+                var ball = new Ball(state, paddle);
                 balls.add(ball);
-                ball.startMovement();
+                state.input.onDown.addOnce(function() {
+                    ball.startMovement();
+                    ballInPlay = true;
+                    // attach input to paddle
+                });
             };
             return state;
         };

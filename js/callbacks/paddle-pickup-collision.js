@@ -32,7 +32,7 @@ define(['config', 'player-data', 'objects/ball', 'phaser'], function(Config, pla
                 state.add.audio('coin').play();
                 break;
             case 'multiball':
-                var ball = new Ball(state, paddle.body.center.x, paddle.body.center.y - 50);
+                var ball = new Ball(state, paddle);
                 balls.add(ball);
                 ball.startMovement();
                 if (playerData.fireballActive) balls.forEachAlive(function(ball) {
