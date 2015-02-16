@@ -1,6 +1,7 @@
 define(['phaser', 'objects/brick'], function(Phaser, Brick) {
     return function(state, brickGroup, levelImage) {
-        var level = state.make.bitmapData().load(levelImage);
+        var image = state.make.image(0, 0, 'levels', levelImage);
+        var level = state.make.bitmapData().load(image);
         var key;
         for (var i = 0; i < 15; i++) {
             for (var j = 0; j < 15; j++) {

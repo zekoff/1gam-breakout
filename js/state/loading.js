@@ -25,8 +25,7 @@ define(['phaser', 'jquery', 'config'], function(Phaser, $, Config) {
         state.load.audio('brick_hit', 'assets/sounds/brick_hit.ogg');
         state.load.audio('paddle_bounce', 'assets/sounds/paddle_bounce.ogg');
         state.load.audio('gameover', 'assets/sounds/gameover.ogg');
-        for (var i = 1; i <= Config.totalLevels; i++)
-            state.load.image(i, 'assets/images/levels/' + i + '.png');
+        state.load.atlas('levels', 'assets/images/levels/level_atlas.png', 'assets/images/levels/level_atlas.json');
         var endpoint = 'https://api.flickr.com/services/rest/';
         endpoint += '?method=flickr.galleries.getPhotos';
         endpoint += '&api_key=3283425b51c87f8f31485ce36b6e9b5c';
