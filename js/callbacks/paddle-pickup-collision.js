@@ -7,7 +7,7 @@ define(['config', 'player-data', 'objects/ball', 'phaser', 'callbacks/show-messa
             if (!fireballTimer) fireballTimer = state.time.create();
             switch (pickup.type) {
                 case 'paddle_size_up':
-                    showMessage('Paddle size up!');
+                    showMessage(state, 'Paddle size up!');
                     paddleStateTimer.destroy();
                     paddleStateTimer = state.time.create();
                     paddle.scale.set(Config.paddleScale * 2, 1);
@@ -19,7 +19,7 @@ define(['config', 'player-data', 'objects/ball', 'phaser', 'callbacks/show-messa
                     state.add.audio('powerup').play();
                     break;
                 case 'paddle_size_down':
-                    showMessage('Paddle size down...');
+                    showMessage(state, 'Paddle size down...');
                     paddle.scale.set(Config.paddleScale / 2, 1);
                     paddleStateTimer.destroy();
                     paddleStateTimer = state.time.create();

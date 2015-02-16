@@ -18,6 +18,8 @@ define(function() {
         messageTextStyle: {
             align: 'center',
             font: 'bold 12pt Arial'
-        }
+        },
+        hudTextFont: 'bold 16pt Arial',
+        extraLifeScore: 15000
     };
 });

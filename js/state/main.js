@@ -15,6 +15,8 @@ define(['phaser', 'objects/ball', 'objects/paddle',
             var bricks;
             var pickups;
             var ballInPlay = false;
+            var hud;
+            var oldScore = 0;
             state.create = function() {
                 state.game.stage.backgroundColor = 0xDDDDFF;
                 var backgroundKey = 'background' + level.toString();
@@ -27,15 +29,28 @@ define(['phaser', 'objects/ball', 'objects/paddle',
                 balls = state.add.group();
                 bricks = state.add.group();
                 pickups = state.add.group();
+                hud = state.add.group();
                 paddle = new Paddle(state);
                 state.physics.arcade.setBoundsToWorld();
                 state.physics.arcade.checkCollision.down = false;
                 readyBall();
                 createLevel(state, bricks, level);
-                var scoreText = state.add.text(Config.gameWidth / 2, 25);
-                scoreText.anchor.set(0.5);
+                var scoreText = state.add.text(Config.gameWidth - 5, 25, null, {
+                    align: 'right',
+                    font: Config.hudTextFont
+                }, hud);
+                scoreText.anchor.set(1, 0.5);
                 scoreText.update = function() {
                     this.text = "Score: " + playerData.score;
+                };
+                var livesText = state.add.text(5, 25, null, {
+                    align: 'left',
+                    font: Config.hudTextFont
+                }, hud);
+                livesText.anchor.set(0, 0.5);
+                livesText.update = function() {
+                    if (playerData.lives > 0)
+                        this.text = "Lives: " + (playerData.lives - 1);
                 };
             };
             state.update = function() {
@@ -76,12 +91,25 @@ define(['phaser', 'objects/ball', 'objects/paddle',
                         readyBall();
                     }
                 }
+                // ugh
+                var scoreChange = playerData.score - oldScore;
+                oldScore = playerData.score;
+                playerData.pointsSinceBonusLife += scoreChange;
+                if (playerData.pointsSinceBonusLife > Config.extraLifeScore) {
+                    playerData.lives++;
+                    playerData.pointsSinceBonusLife -= Config.extraLifeScore;
+                    showMessage(state, "Extra life every " + Config.extraLifeScore + " points!");
+                    state.add.audio('powerup').play();
+                }
             };
             if (DEBUG)
                 state.render = function() {
                     state.time.advancedTiming = true;
-                    state.game.debug.text("FPS: " + state.time.fps, 20, 25, '#FFFFFF');
+                    state.game.debug.text("FPS: " + state.time.fps, Config.gameWidth / 2, 25, '#FFFFFF');
                     state.input.keyboard.onDownCallback = levelTransition;
+                    state.input.keyboard.onDownCallback = function() {
+                        playerData.score += 10000;
+                    };
                 };
             var levelTransition = function() {
                 playerData.fireballActive = false;
@@ -99,6 +127,7 @@ define(['phaser', 'objects/ball', 'objects/paddle',
             var readyBall = function() {
                 playerData.fireballActive = false;
                 var ball = new Ball(state, paddle);
+                pickups.removeAll(true);
                 balls.add(ball);
                 showMessage(state, "(Click/touch to launch)");
                 state.input.onDown.addOnce(function() {
@@ -113,6 +142,7 @@ define(['phaser', 'objects/ball', 'objects/paddle',
                     playerData.score = 0;
                     playerData.lives = 3;
                     playerData.fireballActive = false;
+                    playerData.pointsSinceBonusLife = 0;
                     state.game.state.start('title');
                 });
                 resetTimer.start();
