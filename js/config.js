@@ -13,6 +13,7 @@ define(function() {
         scorePaddleSizeDecrease: 1500,
         fireballDurationMs: 5000,
         coinChance: 0.5,
-        paddleScale: 1.5
+        paddleScale: 1.5,
+        totalLevels: 7
     };
 });

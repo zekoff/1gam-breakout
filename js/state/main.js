@@ -85,10 +85,16 @@ define(['phaser', 'objects/ball', 'objects/paddle',
                 };
             var levelTransition = function() {
                 playerData.fireballActive = false;
-                state.game.state.remove('main');
-                state.game.state.add('main',
-                    new makeMain((parseInt(level, 10) + 1).toString()));
-                state.game.state.start('main');
+                var nextLevel = parseInt(level, 10) + 1;
+                if (nextLevel > Config.totalLevels) {
+                    state.game.state.start('win');
+                }
+                else {
+                    state.game.state.remove('main');
+                    state.game.state.add('main',
+                        new makeMain(nextLevel.toString()));
+                    state.game.state.start('main');
+                }
             };
             var readyBall = function() {
                 playerData.fireballActive = false;
@@ -97,7 +103,6 @@ define(['phaser', 'objects/ball', 'objects/paddle',
                 state.input.onDown.addOnce(function() {
                     ball.startMovement();
                     ballInPlay = true;
-                    // attach input to paddle
                 });
             };
             var gameOver = function() {

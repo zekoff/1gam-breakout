@@ -9,8 +9,6 @@ define(['phaser', 'jquery'], function(Phaser, $) {
         state.load.crossOrigin = 'anonymous';
         state.load.spritesheet('coin', 'assets/images/coin_sheet.png', 24, 24);
         state.load.atlas('atlas', 'assets/images/main_atlas.png', 'assets/images/main_atlas.json');
-        // state.load.image('test_level', 'assets/images/levels/test_level.bmp');
-        // state.load.image('test_level_2', 'assets/images/levels/test_level_2.bmp');
         state.load.image('paddle_size_up', 'assets/images/paddle_size_up.png');
         state.load.image('paddle_size_down', 'assets/images/paddle_size_down.png');
         state.load.image('fireball', 'assets/images/fireball.png');
@@ -30,13 +28,13 @@ define(['phaser', 'jquery'], function(Phaser, $) {
         endpoint += '&gallery_id=66911286-72157648726328108';
         endpoint += '&format=json&nojsoncallback=1';
         $.get(endpoint).done(function(data) {
-            for (var j = 0; j < data.photos.photo.length; j++) {
-                // var photo = data.photos.photo[j];
-                // var location = "https://farm";
-                // location += photo.farm + '.staticflickr.com/' + photo.server + '/';
-                // location += photo.id + '_' + photo.secret + '.jpg';
-                // state.load.image('background' + (j + 1).toString(), location);
-            }
+            // for (var j = 0; j < data.photos.photo.length; j++) {
+            //     var photo = data.photos.photo[j];
+            //     var location = "https://farm";
+            //     location += photo.farm + '.staticflickr.com/' + photo.server + '/';
+            //     location += photo.id + '_' + photo.secret + '.jpg';
+            //     state.load.image('background' + (j + 1).toString(), location);
+            // }
         }).always(function() {
             finishedFlickrLoading = true;
         });
