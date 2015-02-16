@@ -2,7 +2,7 @@
 
 {
 	"filename": "ball",
-	"frame": {"x":2,"y":2,"w":24,"h":24},
+	"frame": {"x":70,"y":100,"w":24,"h":24},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
@@ -10,63 +10,63 @@
 },
 {
 	"filename": "blue",
-	"frame": {"x":28,"y":2,"w":32,"h":32},
+	"frame": {"x":70,"y":68,"w":30,"h":30},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
+	"spriteSourceSize": {"x":0,"y":0,"w":30,"h":30},
 	"sourceSize": {"w":32,"h":32}
 },
 {
 	"filename": "green",
-	"frame": {"x":62,"y":2,"w":32,"h":32},
+	"frame": {"x":72,"y":35,"w":30,"h":30},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
+	"spriteSourceSize": {"x":0,"y":0,"w":30,"h":30},
 	"sourceSize": {"w":32,"h":32}
 },
 {
 	"filename": "paddle",
-	"frame": {"x":96,"y":2,"w":128,"h":24},
+	"frame": {"x":73,"y":2,"w":136,"h":29},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":128,"h":24},
-	"sourceSize": {"w":128,"h":24}
+	"spriteSourceSize": {"x":0,"y":0,"w":136,"h":29},
+	"sourceSize": {"w":136,"h":29}
 },
 {
 	"filename": "purple",
-	"frame": {"x":2,"y":36,"w":32,"h":32},
+	"frame": {"x":2,"y":2,"w":34,"h":32},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
+	"spriteSourceSize": {"x":0,"y":0,"w":34,"h":32},
 	"sourceSize": {"w":32,"h":32}
 },
 {
 	"filename": "red",
-	"frame": {"x":36,"y":36,"w":32,"h":32},
+	"frame": {"x":2,"y":36,"w":34,"h":32},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
+	"spriteSourceSize": {"x":0,"y":0,"w":34,"h":32},
 	"sourceSize": {"w":32,"h":32}
 },
 {
 	"filename": "stone",
-	"frame": {"x":70,"y":36,"w":32,"h":32},
+	"frame": {"x":38,"y":2,"w":33,"h":31},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
+	"spriteSourceSize": {"x":0,"y":0,"w":33,"h":31},
 	"sourceSize": {"w":32,"h":32}
 },
 {
 	"filename": "stone_chipped",
-	"frame": {"x":104,"y":36,"w":32,"h":32},
+	"frame": {"x":38,"y":35,"w":32,"h":31},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
+	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":31},
 	"sourceSize": {"w":32,"h":32}
 },
 {
 	"filename": "stone_cracked",
-	"frame": {"x":138,"y":36,"w":32,"h":32},
+	"frame": {"x":2,"y":70,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
@@ -74,7 +74,7 @@
 },
 {
 	"filename": "yellow",
-	"frame": {"x":172,"y":36,"w":32,"h":32},
+	"frame": {"x":36,"y":70,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
@@ -83,10 +83,10 @@
 "meta": {
 	"app": "http://www.codeandweb.com/texturepacker",
 	"version": "1.0",
-	"image": "breakout-graphics.png",
+	"image": "main_atlas.png",
 	"format": "RGBA8888",
 	"size": {"w":256,"h":128},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:3dca3c1d69f2ed67ed8cbab8c4ca9ce9:3f6f95a70c4938306ffeaf7e272aed50:7417d0b98091b43bed3c067231b19e41$"
+	"smartupdate": "$TexturePacker:SmartUpdate:8b5754868b97a83b7cb27d3c63a7d0d6:4a10393d8181cc8817054170d1b0221d:c280de110dc006277218185b56ba3751$"
 }
 }
