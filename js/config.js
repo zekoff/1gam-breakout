@@ -14,7 +14,7 @@ define(function() {
         fireballDurationMs: 5000,
         coinChance: 0.5,
         paddleScale: 1.5,
-        totalLevels: 7,
+        totalLevels: 14,
         messageTextStyle: {
             align: 'center',
             font: 'bold 12pt Arial'

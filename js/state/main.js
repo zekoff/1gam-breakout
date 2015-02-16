@@ -106,9 +106,9 @@ define(['phaser', 'objects/ball', 'objects/paddle',
                     state.time.advancedTiming = true;
                     state.game.debug.text("FPS: " + state.time.fps, Config.gameWidth / 2, 25, '#FFFFFF');
                     state.input.keyboard.onDownCallback = levelTransition;
-                    state.input.keyboard.onDownCallback = function() {
-                        playerData.score += 10000;
-                    };
+                    // state.input.keyboard.onDownCallback = function() {
+                    //     playerData.score += 10000;
+                    // };
                 };
             var levelTransition = function() {
                 playerData.fireballActive = false;
