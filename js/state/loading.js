@@ -1,5 +1,6 @@
 define(['phaser', 'jquery'], function(Phaser, $) {
     var state = new Phaser.State();
+    var finishedFlickrLoading = false;
     state.preload = function() {
         // load the preload sprite
     };
@@ -33,21 +34,21 @@ define(['phaser', 'jquery'], function(Phaser, $) {
             crossOrigin: true
         };
         $.ajax(request).done(function(data) {
-            for (var j = 0; j < 5; j++) {
-                var location = "https://farm";
+            for (var j = 0; j < data.photos.photo.length; j++) {
                 var photo = data.photos.photo[j];
+                var location = "https://farm";
                 location += photo.farm + '.staticflickr.com/' + photo.server + '/';
                 location += photo.id + '_' + photo.secret + '.jpg';
-                var key = 'background' + (j + 1).toString();
-                console.log(key);
-                state.load.image(key, location);
+                state.load.image('background' + (j + 1).toString(), location);
             }
-            // state.cache.addImage('background', location);
+        }).always(function() {
+            finishedFlickrLoading = true;
         });
 
     };
     state.update = function() {
-        if (state.load.hasLoaded) state.game.state.start('title');
+        if (state.load.hasLoaded && finishedFlickrLoading)
+            state.game.state.start('title');
     };
     return state;
 });

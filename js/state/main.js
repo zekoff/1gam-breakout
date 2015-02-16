@@ -15,11 +15,14 @@ define(['phaser', 'objects/ball', 'objects/paddle',
             var bricks;
             var pickups;
             state.create = function() {
-                state.game.stage.backgroundColor = 0xFFFFFF;
-                var background = state.add.image(0, 0, 'background' + level.toString());
-                background.alpha = 0.4;
-                background.height = Config.gameHeight;
-                background.width = Config.gameWidth;
+                state.game.stage.backgroundColor = 0xDDDDFF;
+                var backgroundKey = 'background' + level.toString();
+                if (state.cache.checkImageKey(backgroundKey)) {
+                    var background = state.add.image(0, 0, backgroundKey);
+                    background.alpha = 0.4;
+                    background.height = Config.gameHeight;
+                    background.width = Config.gameWidth;
+                }
                 balls = state.add.group();
                 bricks = state.add.group();
                 pickups = state.add.group();
