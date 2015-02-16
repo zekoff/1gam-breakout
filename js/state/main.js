@@ -68,15 +68,11 @@ define(['phaser', 'objects/ball', 'objects/paddle',
                 if (!balls.total && ballInPlay) {
                     ballInPlay = false;
                     if (!--playerData.lives) {
-                        console.log('you lost'); // game over
+                        gameOver();
                     }
                     else {
-                        console.log('resetting ball');
-                        // play sad noise
                         state.add.audio('powerdown').play();
-                        // reset ball to paddle
                         readyBall();
-                        // reset to waiting for click to launch ball
                     }
                 }
             };
@@ -94,6 +90,7 @@ define(['phaser', 'objects/ball', 'objects/paddle',
                 state.game.state.start('main');
             };
             var readyBall = function() {
+                playerData.fireballActive = false;
                 var ball = new Ball(state, paddle);
                 balls.add(ball);
                 state.input.onDown.addOnce(function() {
@@ -101,6 +98,17 @@ define(['phaser', 'objects/ball', 'objects/paddle',
                     ballInPlay = true;
                     // attach input to paddle
                 });
+            };
+            var gameOver = function() {
+                state.add.audio('gameover').play();
+                var resetTimer = state.time.create();
+                resetTimer.add(3000, function() {
+                    playerData.score = 0;
+                    playerData.lives = 3;
+                    playerData.fireballActive = false;
+                    state.game.state.start('title');
+                });
+                resetTimer.start();
             };
             return state;
         };
