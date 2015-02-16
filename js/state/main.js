@@ -92,8 +92,8 @@ define(['phaser', 'objects/ball', 'objects/paddle',
                     }
                 }
                 // ugh
-                var scoreChange = playerData.score - oldScore;
-                oldScore = playerData.score;
+                var scoreChange = playerData.score - playerData.oldScore;
+                playerData.oldScore = playerData.score;
                 playerData.pointsSinceBonusLife += scoreChange;
                 if (playerData.pointsSinceBonusLife > Config.extraLifeScore) {
                     playerData.lives++;
@@ -143,6 +143,7 @@ define(['phaser', 'objects/ball', 'objects/paddle',
                     playerData.lives = 3;
                     playerData.fireballActive = false;
                     playerData.pointsSinceBonusLife = 0;
+                    playerData.oldScore = 0;
                     state.game.state.start('title');
                 });
                 resetTimer.start();

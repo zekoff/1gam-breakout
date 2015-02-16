@@ -20,6 +20,6 @@ define(function() {
             font: 'bold 12pt Arial'
         },
         hudTextFont: 'bold 16pt Arial',
-        extraLifeScore: 15000
+        extraLifeScore: 50000
     };
 });
