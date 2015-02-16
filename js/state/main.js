@@ -28,7 +28,8 @@ define(['phaser', 'objects/ball', 'objects/paddle',
                 pickups = state.add.group();
                 paddle = new Paddle(state, true);
                 state.physics.arcade.setBoundsToWorld();
-                balls.add(new Ball(state));
+                state.physics.arcade.checkCollision.down = false;
+                readyBall();
                 createLevel(state, bricks, level);
                 var scoreText = state.add.text(Config.gameWidth / 2, 25);
                 scoreText.anchor.set(0.5);
@@ -59,8 +60,20 @@ define(['phaser', 'objects/ball', 'objects/paddle',
                     paddlePickupCollision(state, paddle, pickup, balls);
                     pickup.kill();
                 });
-                if (bricks.total === 0 && pickups.total === 0) {
+                if (!bricks.total && !pickups.total) {
                     levelTransition();
+                }
+                if (!balls.total) {
+                    if (!--playerData.lives) {
+                        console.log('you lost'); // game over
+                    }
+                    else {
+                        // play sad noise
+                        state.add.audio('powerdown').play();
+                        // reset ball to paddle
+                        readyBall();
+                        // reset to waiting for click to launch ball
+                    }
                 }
             };
             if (DEBUG)
@@ -75,6 +88,11 @@ define(['phaser', 'objects/ball', 'objects/paddle',
                 state.game.state.add('main',
                     new makeMain((parseInt(level, 10) + 1).toString()));
                 state.game.state.start('main');
+            };
+            var readyBall = function() {
+                var ball = new Ball(state, paddle.body.center.x, paddle.body.center.y - 50);
+                balls.add(ball);
+                ball.startMovement();
             };
             return state;
         };

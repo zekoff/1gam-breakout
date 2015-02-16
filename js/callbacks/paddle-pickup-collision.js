@@ -32,7 +32,9 @@ define(['config', 'player-data', 'objects/ball', 'phaser'], function(Config, pla
                 state.add.audio('coin').play();
                 break;
             case 'multiball':
-                balls.add(new Ball(state, paddle.body.center.x, paddle.body.center.y - 40));
+                var ball = new Ball(state, paddle.body.center.x, paddle.body.center.y - 50);
+                balls.add(ball);
+                ball.startMovement();
                 if (playerData.fireballActive) balls.forEachAlive(function(ball) {
                     ball.tint = 0xFFA500;
                 });

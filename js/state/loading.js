@@ -30,11 +30,11 @@ define(['phaser', 'jquery'], function(Phaser, $) {
         endpoint += '&format=json&nojsoncallback=1';
         $.get(endpoint).done(function(data) {
             for (var j = 0; j < data.photos.photo.length; j++) {
-                var photo = data.photos.photo[j];
-                var location = "https://farm";
-                location += photo.farm + '.staticflickr.com/' + photo.server + '/';
-                location += photo.id + '_' + photo.secret + '.jpg';
-                state.load.image('background' + (j + 1).toString(), location);
+                // var photo = data.photos.photo[j];
+                // var location = "https://farm";
+                // location += photo.farm + '.staticflickr.com/' + photo.server + '/';
+                // location += photo.id + '_' + photo.secret + '.jpg';
+                // state.load.image('background' + (j + 1).toString(), location);
             }
         }).always(function() {
             finishedFlickrLoading = true;

@@ -5,8 +5,12 @@ define(['phaser', 'config'], function(Phaser, Config) {
         state.physics.enable(ball, Phaser.Physics.ARCADE);
         ball.body.bounce.set(1);
         ball.body.collideWorldBounds = true;
-        state.physics.arcade.velocityFromAngle(270 + state.rnd.angle() / 4, speed || Config.ballSpeed,
-            ball.body.velocity);
+        ball.checkWorldBounds = true;
+        ball.outOfBoundsKill = true;
+        ball.startMovement = function() {
+            state.physics.arcade.velocityFromAngle(270 + state.rnd.angle() / 4, speed || Config.ballSpeed,
+                ball.body.velocity);
+        };
         return ball;
     };
 });
