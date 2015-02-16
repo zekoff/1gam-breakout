@@ -27,7 +27,7 @@ define(['phaser', 'objects/ball', 'objects/paddle',
                 balls = state.add.group();
                 bricks = state.add.group();
                 pickups = state.add.group();
-                paddle = new Paddle(state, true);
+                paddle = new Paddle(state);
                 state.physics.arcade.setBoundsToWorld();
                 state.physics.arcade.checkCollision.down = false;
                 readyBall();
@@ -45,6 +45,7 @@ define(['phaser', 'objects/ball', 'objects/paddle',
                             Config.ballSpeed, ball.body.velocity);
                         state.add.audio('paddle_bounce').play();
                     });
+                if (ballInPlay) paddle.x = state.input.position.x;
                 var collisionFunction = playerData.fireballActive ? state.physics.arcade.overlap : state.physics.arcade.collide;
                 collisionFunction.call(state.physics.arcade, bricks, balls, function(brick) {
                     brickBallCollision(state, brick);
