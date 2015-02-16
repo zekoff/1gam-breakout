@@ -8,20 +8,20 @@ define(['config', 'player-data', 'objects/ball', 'phaser'], function(Config, pla
             case 'paddle_size_up':
                 paddleStateTimer.destroy();
                 paddleStateTimer = state.time.create();
-                paddle.scale.set(2, 1);
+                paddle.scale.set(Config.paddleScale * 2, 1);
                 paddleStateTimer.add(Config.buffDurationMs, function() {
-                    paddle.scale.set(1);
+                    paddle.scale.set(Config.paddleScale, 1);
                 });
                 paddleStateTimer.start();
                 playerData.score += Config.scorePaddleSizeIncrease;
                 state.add.audio('powerup').play();
                 break;
             case 'paddle_size_down':
-                paddle.scale.set(0.5, 1);
+                paddle.scale.set(Config.paddleScale / 2, 1);
                 paddleStateTimer.destroy();
                 paddleStateTimer = state.time.create();
                 paddleStateTimer.add(Config.debuffDurationMs, function() {
-                    paddle.scale.set(1);
+                    paddle.scale.set(Config.paddleScale, 1);
                 });
                 paddleStateTimer.start();
                 playerData.score += Config.scorePaddleSizeDecrease;
