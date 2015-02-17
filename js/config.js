@@ -17,9 +17,9 @@ define(function() {
         totalLevels: 14,
         messageTextStyle: {
             align: 'center',
-            font: 'bold 12pt Arial'
+            font: 'bold 12pt Chewy'
         },
-        hudTextFont: 'bold 16pt Arial',
+        hudTextFont: 'bold 16pt Chewy',
         extraLifeScore: 50000
     };
 });

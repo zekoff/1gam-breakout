@@ -11,10 +11,12 @@ define(['phaser', 'jquery', 'config'], function(Phaser, $, Config) {
         state.load.setPreloadSprite(paddleSprite);
         state.add.text(Config.gameWidth / 2, Config.gameHeight / 2 - 200,
             "Loading 1gam-breakout...", {
-                fill: '#FFFFFF'
+                fill: '#FFFFFF',
+                font: 'bold 30pt Chewy'
             }).anchor.set(0.5);
         state.load.crossOrigin = 'anonymous';
         state.load.spritesheet('coin', 'assets/images/coin_sheet.png', 24, 24);
+        state.load.image('title_screen', 'assets/images/title_screen.png');
         state.load.image('paddle_size_up', 'assets/images/paddle_size_up.png');
         state.load.image('paddle_size_down', 'assets/images/paddle_size_down.png');
         state.load.image('fireball', 'assets/images/fireball.png');

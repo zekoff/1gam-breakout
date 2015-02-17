@@ -17,7 +17,6 @@ define(['phaser', 'objects/ball', 'objects/paddle',
             var ballInPlay = false;
             var hud;
             state.create = function() {
-                state.game.stage.backgroundColor = 0xDDDDFF;
                 var backgroundKey = 'background' + level.toString();
                 if (state.cache.checkImageKey(backgroundKey)) {
                     var background = state.add.image(0, 0, backgroundKey);

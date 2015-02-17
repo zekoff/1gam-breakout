@@ -8,12 +8,8 @@ define(['phaser', 'config', 'objects/paddle', 'objects/ball', 'callbacks/compute
             var bouncePoint = 0.5;
             var eventAdded = false;
             state.create = function() {
-                state.game.stage.backgroundColor = 0xDDDDFF;
-                state.add.text(Config.gameWidth / 2, Config.gameHeight / 2, '1gam-breakout', {
-                    font: '20px Arial',
-                    fill: '#FFFFFF',
-                    align: 'center'
-                }).anchor.set(0.5);
+                state.add.image(0, 0, 'title_screen');
+                state.game.stage.backgroundColor = 0xFFFFFF;
                 paddle = new Paddle(state);
                 ball = new Ball(state, paddle);
                 ball.startMovement();
@@ -24,14 +20,15 @@ define(['phaser', 'config', 'objects/paddle', 'objects/ball', 'callbacks/compute
                 state.physics.arcade.overlap(paddle, ball, function(paddle, ball) {
                     state.physics.arcade.velocityFromAngle(computeReflectAngle(paddle, ball),
                         Config.ballSpeed, ball.body.velocity);
-                    // set new bounce location
                     bouncePoint = state.rnd.frac();
                 });
                 counter += state.time.elapsed;
                 if (counter > 3000 && !eventAdded) {
                     eventAdded = true;
-                    state.add.text(Config.gameWidth / 2,
-                        Config.gameHeight * Config.paddleY, "(Click/touch to start)").anchor.set(0.5);
+                    state.add.text(Config.gameWidth / 2 + 350,
+                        Config.gameHeight * Config.paddleY - 100, "(Click/touch to start)", {
+                            font: 'bold 24pt Chewy'
+                        }).anchor.set(0.5);
                     state.input.onDown.add(function() {
                         state.game.state.start('main');
                     });
