@@ -31,6 +31,8 @@ define(['phaser', 'config', 'objects/paddle', 'objects/ball', 'callbacks/compute
                         }).anchor.set(0.5);
                     state.input.onDown.add(function() {
                         state.game.state.start('main');
+                        counter = 0;
+                        eventAdded = false;
                     });
                 }
             };
