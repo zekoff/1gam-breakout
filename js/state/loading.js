@@ -17,6 +17,7 @@ define(['phaser', 'jquery', 'config'], function(Phaser, $, Config) {
         state.load.crossOrigin = 'anonymous';
         state.load.spritesheet('coin', 'assets/images/coin_sheet.png', 24, 24);
         state.load.image('title_screen', 'assets/images/title_screen.png');
+        state.load.image('win_screen', 'assets/images/win_screen.png');
         state.load.image('paddle_size_up', 'assets/images/paddle_size_up.png');
         state.load.image('paddle_size_down', 'assets/images/paddle_size_down.png');
         state.load.image('fireball', 'assets/images/fireball.png');

@@ -25,7 +25,7 @@ define(['phaser', 'config', 'objects/paddle', 'objects/ball', 'callbacks/compute
                 counter += state.time.elapsed;
                 if (counter > 3000 && !eventAdded) {
                     eventAdded = true;
-                    state.add.text(Config.gameWidth / 2 + 350,
+                    state.add.text(Config.gameWidth / 2 + 320,
                         Config.gameHeight * Config.paddleY - 100, "(Click/touch to start)", {
                             font: 'bold 24pt Chewy'
                         }).anchor.set(0.5);
