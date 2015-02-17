@@ -8,7 +8,7 @@ define(['phaser', 'objects/ball', 'objects/paddle',
         brickBallCollision, paddlePickupCollision, Config,
         createLevel, playerData, showMessage) {
         return function makeMain(level) {
-            var DEBUG = true;
+            var DEBUG = false;
             var state = new Phaser.State();
             var paddle;
             var balls;
